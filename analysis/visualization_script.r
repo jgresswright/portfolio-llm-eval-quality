@@ -113,7 +113,7 @@ p3 <- rater_summary %>%
   ggplot(aes(x = rater_id, y = accuracy * 100, fill = tendency)) +
   geom_col(width = 0.7) +
   geom_hline(yintercept = mean(rater_summary$accuracy) * 100, 
-             linetype = "dashed", color = "gray30", size = 0.8) +
+             linetype = "dashed", color = "gray30", linewidth = 0.8) +
   annotate("text", x = 2, y = mean(rater_summary$accuracy) * 100 + 2,
            label = "Mean Accuracy", size = 3, color = "gray30") +
   scale_y_continuous(limits = c(0, 100), labels = percent_format(scale = 1)) +

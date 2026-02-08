@@ -356,7 +356,7 @@ Based on comprehensive statistical analysis of 3,000 individual ratings across 1
 ```         
 portfolio-llm-eval-quality/
 │
-├── portfolio_readme.md                          # This file
+├── README.md                          # This file
 ├── data/
 │   ├── production/                    # Frozen dataset for published analysis
 │   │   ├── evaluations_long.csv            
@@ -385,15 +385,20 @@ portfolio-llm-eval-quality/
 
 ### Using Pre-Generated Data (Recommended)
 
-The repository includes frozen production data in `data/production/` that matches all findings in this README:
+The repository includes frozen production data in `data/production/` that matches 
+all findings in this README:
+```r
+# 1. Restore package dependencies (first time only)
+renv::restore()
 
-``` r
-# Run analysis pipeline with production data
+# 2. Run analysis pipeline with production data
 source("analysis/exploratory_analysis.r")
-source("analysis/irr_analysis.r")
+source("analysis/inter_rater_reliability.r")
 source("analysis/accuracy_analysis.r")
 source("analysis/visualization_script.r")
 ```
+
+**Note:** Using `renv` ensures exact package versions match the analysis environment.
 
 ### Generating New Data (Optional)
 

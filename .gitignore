@@ -1,4 +1,108 @@
-.Rproj.user
-.Rhistory
+# R Portfolio Project .gitignore
+
+# ============================================================================
+# USER-SPECIFIC FILES (Do not commit)
+# ============================================================================
+
+# User-specific RStudio files
+.Rproj.user/
+.Rproj.user*
+
+# User-specific R profile settings
+.Rprofile
+
+# R environment variables (may contain secrets)
+.Renviron
+
+# ============================================================================
+# SESSION DATA (Regenerated on use)
+# ============================================================================
+
+# R workspace data
 .RData
-.Ruserdata
+.Rhistory
+.Rapp.history
+
+# OAuth tokens
+.httr-oauth
+
+# ============================================================================
+# SYSTEM FILES
+# ============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# ============================================================================
+# TEMPORARY FILES
+# ============================================================================
+
+*.tmp
+*.temp
+*.log
+*.swp
+*.swo
+*~
+
+# ============================================================================
+# OUTPUT FILES (Optional - see note below)
+# ============================================================================
+
+# Uncomment if you want to exclude generated analysis results
+# (forces users to regenerate by running scripts)
+# *.rds
+# *.RDS
+# output/figures/*.png
+# output/figures/*.pdf
+
+# Note: For this portfolio project, KEEP output files tracked
+# so people can see your results without running scripts
+
+# ============================================================================
+# R MARKDOWN
+# ============================================================================
+
+# knitr cache
+*_cache/
+/cache/
+
+# Temporary R markdown files
+*.utf8.md
+*.knit.md
+
+# ============================================================================
+# PACKAGE DEVELOPMENT (Not applicable for this project)
+# ============================================================================
+
+# pkgdown site
+docs/
+
+# ============================================================================
+# IDE FILES
+# ============================================================================
+
+# VSCode
+.vscode/
+
+# ============================================================================
+# NOTES
+# ============================================================================
+
+# TRACKED FILES (not ignored):
+# - *.Rproj (project settings)
+# - All R scripts (*.r, *.R)
+# - data/ directory (frozen production data)
+# - output/ directory (results and figures)
+# - README.md
+# - LICENSE

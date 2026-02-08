@@ -6,7 +6,8 @@ library(tidyverse)
 # Use production data (frozen for reproducibility)
 DATA_DIR <- "data/production/"
 
-# Load data
+# Load frozen production data to ensure reproducibility
+# (regenerating synthetic data would invalidate README findings)
 ratings_wide <- read_csv(paste0(DATA_DIR, "evaluations_wide.csv"))
 ratings_long <- read_csv(paste0(DATA_DIR, "evaluations_long.csv"))
 rater_summary <- read_csv(paste0(DATA_DIR, "rater_summary.csv"))

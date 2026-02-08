@@ -1,0 +1,16 @@
+rater_id,tendency,consistency,expertise_domain
+1,moderate,0.672748085227795,creative
+2,moderate,0.6671724856481888,factual
+3,moderate,0.7303350931964815,general
+4,moderate,0.854171069455333,opinion
+5,moderate,0.8265701080788858,technical
+6,strict,0.8544943977613002,opinion
+7,strict,0.6080673322780058,technical
+8,moderate,0.6271736595430412,opinion
+9,moderate,0.6555838376749307,factual
+10,lenient,0.935237018216867,creative
+11,moderate,0.8141043663839809,general
+12,moderate,0.8015967650222592,technical
+13,lenient,0.6473921410157345,opinion
+14,moderate,0.9348918402916752,general
+15,moderate,0.8930485801654867,general

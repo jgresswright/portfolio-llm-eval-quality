@@ -9,10 +9,13 @@ if (!dir.exists("output/figures")) {
   dir.create("output/figures", recursive = TRUE)
 }
 
+# Use production data (frozen for reproducibility)
+DATA_DIR <- "data/production/"
+
 # Load data
-ratings_wide <- read_csv("data/evaluations_wide.csv")
-ratings_long <- read_csv("data/evaluations_long.csv")
-rater_summary <- read_csv("data/rater_summary.csv")
+ratings_wide <- read_csv(paste0(DATA_DIR, "evaluations_wide.csv"))
+ratings_long <- read_csv(paste0(DATA_DIR, "evaluations_long.csv"))
+rater_summary <- read_csv(paste0(DATA_DIR, "rater_summary.csv"))
 irr_results <- readRDS("output/irr_analysis_results.rds")
 
 # Custom theme for professional plots

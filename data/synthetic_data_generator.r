@@ -1,3 +1,7 @@
+# CAUTION: Running this script will generate NEW random data
+# Current production data is frozen in data/production/
+# Re-running will invalidate published README findings
+
 # Generate Synthetic LLM Evaluation Data
 # This creates realistic evaluation patterns without using any proprietary data
 

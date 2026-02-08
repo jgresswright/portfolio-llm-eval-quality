@@ -3,10 +3,13 @@
 
 library(tidyverse)
 
+# Use production data (frozen for reproducibility)
+DATA_DIR <- "data/production/"
+
 # Load data
-ratings_long <- read_csv("data/evaluations_long.csv")
-rater_summary <- read_csv("data/rater_summary.csv")
-rater_profiles <- read_csv("data/rater_profiles.csv")
+ratings_long <- read_csv(paste0(DATA_DIR, "evaluations_long.csv"))
+rater_summary <- read_csv(paste0(DATA_DIR, "rater_summary.csv"))
+rater_profiles <- read_csv(paste0(DATA_DIR, "rater_profiles.csv"))
 
 cat("\n=== ACCURACY ANALYSIS ===\n\n")
 

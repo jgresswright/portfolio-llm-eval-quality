@@ -4,9 +4,12 @@
 library(tidyverse)
 library(irr)  # For inter-rater reliability metrics
 
+# Use production data (frozen for reproducibility)
+DATA_DIR <- "data/production/"
+
 # Load data
-ratings_wide <- read_csv("data/evaluations_wide.csv")
-ratings_long <- read_csv("data/evaluations_long.csv")
+ratings_wide <- read_csv(paste0(DATA_DIR, "evaluations_wide.csv"))
+ratings_long <- read_csv(paste0(DATA_DIR, "evaluations_long.csv"))
 
 # ============================================================================
 # 1. OVERALL INTER-RATER RELIABILITY

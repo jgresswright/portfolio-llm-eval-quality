@@ -412,6 +412,8 @@ file.copy("data/production/", archive_name, recursive = TRUE)
 
 # 2. Generate new data
 source("data/synthetic_data_generator.r")
+# Note: Due to set.seed(42), this will generate identical data to production/
+# Change seed value in generator script if you want different data
 
 # 3. Copy new data to production
 file.copy(list.files("data", pattern = "\\.csv$", full.names = TRUE), 
@@ -424,7 +426,16 @@ source("analysis/accuracy_analysis.r")
 source("analysis/visualization_script.r")
 ```
 
-**Note:** New data generation will produce different random patterns, invalidating the specific numbers in this README.
+## Data Generation & Reproducibility
+
+The synthetic data is generated using `data/synthetic_data_generator.r` with a fixed random seed (42), ensuring perfect reproducibility. The `/data/production` folder contains the frozen dataset used for all analyses in this project. 
+
+To verify reproducibility:
+1. Run `source("data/synthetic_data_generator.r")`
+2. Compare output to `/data/production/*.csv` files
+3. They should be identical
+
+This separation allows analysis scripts to reference stable inputs while maintaining the ability to regenerate data for verification.
 
 ## Skills Demonstrated
 

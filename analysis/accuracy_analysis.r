@@ -7,7 +7,7 @@ library(tidyverse)
 DATA_DIR <- "data/production/"
 
 # Load frozen production data to ensure reproducibility
-# (regenerating synthetic data would invalidate README findings)
+# (regenerating synthetic data would invalidate README findings)jj
 ratings_long <- read_csv(paste0(DATA_DIR, "evaluations_long.csv"))
 rater_summary <- read_csv(paste0(DATA_DIR, "rater_summary.csv"))
 rater_profiles <- read_csv(paste0(DATA_DIR, "rater_profiles.csv"))
@@ -168,12 +168,6 @@ cat("Accuracy by expertise match:\n")
 print(accuracy_by_expertise, n = Inf)
 cat("\n")
 
-# Correlation between consistency and accuracy
-cat("Correlation between rater consistency and accuracy:\n")
-consistency_accuracy_cor <- cor(rater_accuracy_detailed$consistency, 
-                                 rater_accuracy_detailed$exact_accuracy)
-cat("Correlation coefficient:", round(consistency_accuracy_cor, 3), "\n\n")
-
 # ============================================================================
 # 5. SYSTEMATIC BIAS DETECTION
 # ============================================================================
@@ -240,8 +234,9 @@ cat("• Most accurate domain:", accuracy_by_domain$domain[1],
     "(", round(accuracy_by_domain$exact_accuracy[1], 1), "%)\n")
 cat("• Least accurate domain:", tail(accuracy_by_domain$domain, 1),
     "(", round(tail(accuracy_by_domain$exact_accuracy, 1), 1), "%)\n")
-cat("• Most accurate complexity:", accuracy_by_complexity$query_complexity[1],
-    "(", round(accuracy_by_complexity$exact_accuracy[1], 1), "%)\n")
+cat("• Most accurate complexity:", 
+    as.character(accuracy_by_complexity$query_complexity[which.max(accuracy_by_complexity$exact_accuracy)]),
+    "(", round(max(accuracy_by_complexity$exact_accuracy), 1), "%)\n")
 cat("• Expertise match benefit:", 
     round(accuracy_by_expertise$exact_accuracy[accuracy_by_expertise$expertise_match == TRUE] -
           accuracy_by_expertise$exact_accuracy[accuracy_by_expertise$expertise_match == FALSE], 1),

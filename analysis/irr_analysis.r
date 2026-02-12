@@ -123,20 +123,18 @@ cat("\n")
 # 4. DISAGREEMENT PATTERNS
 # ============================================================================
 
-cat("=== Disagreement Analysis ===\n\n")
+cat("=== Disagreement Patterns ===\n\n")
 
-# Calculate disagreement magnitude
 disagreement_analysis <- ratings_wide %>%
+  select(eval_id, rater_1, rater_2, rater_3, domain, query_complexity) %>%
   mutate(
     # Maximum distance between any two raters
     max_disagreement = pmax(
       abs(rater_1 - rater_2),
       abs(rater_2 - rater_3),
       abs(rater_1 - rater_3)
-    ),
-    # Standard deviation across three raters
-    rating_sd = apply(select(., rater_1, rater_2, rater_3), 1, sd)
-  )
+    )
+  )  # ← Removed unused rating_sd calculation
 
 cat("Disagreement magnitude distribution:\n")
 print(table(disagreement_analysis$max_disagreement))

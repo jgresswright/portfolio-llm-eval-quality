@@ -163,6 +163,7 @@ cat("Rater expertise distribution:\n")
 print(table(rater_profiles$expertise_domain))
 cat("\n")
 
+# Parameter verification (not a discovery - just confirming data generation)
 cat("Consistency scores:\n")
 cat("Mean:", round(mean(rater_profiles$consistency), 3), "\n")
 cat("Range:", round(min(rater_profiles$consistency), 3), "to", 

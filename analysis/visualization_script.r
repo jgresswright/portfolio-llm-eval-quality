@@ -95,7 +95,7 @@ p2 <- agreement_data %>%
   scale_y_continuous(limits = c(0, 70), labels = percent_format(scale = 1)) +
   scale_fill_manual(values = c("#06A77D", "#F1A208", "#D11149")) +
   labs(
-    title = "Agreement Rate Decreases with Query Complexity",
+    title = "Moderate Complexity Queries Show Highest Agreement",
     subtitle = "Full agreement (3/3 raters) by query complexity level",
     x = "Query Complexity",
     y = "Full Agreement Rate (%)",
@@ -144,7 +144,7 @@ ggsave("output/figures/03_rater_accuracy.png", p3,
 # Calculate pairwise disagreement matrix
 disagreement_matrix <- ratings_long %>%
   select(eval_id, rater_id, rating) %>%
-  pivot_wider(names_from = rater_id, values_from = rating, names_prefix = "rater_") %>%
+  pivot_wider(names_from = rater_id, values_from = rating) %>%
   select(-eval_id)
 
 # Create disagreement rate matrix
@@ -170,7 +170,7 @@ disagreement_df <- as.data.frame(disagreement_rates) %>%
 
 p4 <- disagreement_df %>%
   ggplot(aes(x = factor(rater1), y = factor(rater2), fill = disagreement)) +
-  geom_tile(color = "white", size = 0.5) +
+  geom_tile(color = "white", linewidth = 0.5) +
   geom_text(aes(label = ifelse(disagreement > 0, round(disagreement, 0), "")),
             size = 2.5, color = "white") +
   scale_fill_gradient2(low = "#06A77D", mid = "#F1A208", high = "#D11149",
@@ -209,7 +209,7 @@ p5 <- ratings_long %>%
                      nrow(ratings_long), " individual ratings"),
     x = "Rating (1-5 Scale)",
     y = "Count",
-    fill = "Rating"
+    fill = NULL
   ) +
   theme_professional +
   theme(legend.position = "none")

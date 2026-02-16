@@ -2,9 +2,7 @@
 
 ## Executive Summary
 
-This project analyzes inter-rater reliability and accuracy patterns in large-scale LLM evaluation systems using synthetically generated data that mirrors real-world annotation workflows. Through statistical analysis of 1,000 evaluations across 15 raters, I discovered an unexpected pattern: **moderate complexity queries achieved 26.2% full rater agreement compared to only 23.0% for simple queries and 16.5% for complex queries** — defying conventional assumptions that simpler evaluations are easier to assess consistently.
-
-The analysis revealed fair overall agreement (Fleiss' Kappa = 0.281) with 23% perfect agreement across all three raters per evaluation. Disagreement patterns showed strong domain and complexity effects, with opinion queries and complex evaluations presenting the greatest challenges for rater consistency.
+This project analyzes inter-rater reliability and accuracy patterns in large-scale LLM evaluation systems using synthetically generated data that mirrors real-world annotation workflows. Through statistical analysis of 1,000 evaluations across 15 raters, the analysis quantified fair overall agreement (Fleiss' Kappa = 0.281) with notable variation by evaluation type. **Complex queries showed significantly lower agreement (16.5%) compared to simple and moderate queries (23-26%)**, demonstrating how evaluation difficulty directly impacts inter-rater consistency and highlighting areas requiring enhanced guidelines and quality frameworks.
 
 **Key Technical Achievement:** Complete reproducible analytical pipeline from synthetic data generation through statistical analysis (Fleiss' Kappa, pairwise agreement, disagreement magnitude) and publication-quality reporting, showcasing practical application of inter-rater reliability methods to real-world evaluation quality challenges.
 
@@ -48,7 +46,25 @@ Created synthetic evaluation dataset (1,000 evaluations, 15 raters) with realist
 -   **Statistical Methods**: Inter-rater reliability, correlation analysis, hypothesis testing
 -   **Reproducible Research**: R Markdown for automated reporting
 
-## Key Findings
+## Methodological Note: Synthetic Data Design
+
+This project uses **synthetically generated data** to demonstrate analytical methodologies that would apply to real-world evaluation systems. The data generation process intentionally models realistic patterns observed in production annotation workflows:
+
+-   **Evaluation difficulty factors:** Complex queries and opinion domains receive higher difficulty parameters, modeling increased cognitive load and ambiguity that raters face with these evaluation types
+-   **Rater bias patterns:** Some raters receive systematic tendency adjustments (±0.5 rating points), modeling real-world calibration drift
+-   **Expertise effects:** Raters receive accuracy bonuses/penalties based on domain matching, modeling the value of specialized knowledge
+-   **Random variation:** All ratings include realistic noise proportional to evaluation difficulty and rater consistency
+
+**The value of this portfolio project** is not in the specific numerical results (which validate the data generation logic), but in demonstrating:
+
+1.  How to detect and quantify these patterns in production data
+2.  Statistical methods for measuring inter-rater reliability and systematic bias
+3.  Analytical frameworks for translating quality metrics into actionable business recommendations
+4.  Complete reproducible pipeline from data through analysis to stakeholder communication
+
+The "findings" presented below demonstrate how these analytical methods successfully identify the patterns programmed into the synthetic data—proving the methodology would work on real annotation data where the underlying patterns are unknown.
+
+## Analysis Results: Pattern Detection & Quantification
 
 ### Overall Inter-Rater Reliability
 
@@ -64,33 +80,15 @@ The analysis of 1,000 evaluations across 15 raters revealed **fair overall agree
 
 -   Factual queries: 24.8% agreement (highest)
 -   Opinion queries: 19.7% agreement (lowest)
--   Difference suggests domain-specific difficulty
+-   Difference reflects the modeled domain-specific difficulty
 
 **Complexity Effects:**
 
 -   Simple queries: 23.0% agreement
+-   Moderate queries: 26.2% agreement\
 -   Complex queries: 16.5% agreement
--   28% relative decrease in agreement for complex evaluations
 
-**Key Discovery:**
-
-Moderate complexity queries achieved higher agreement than simple queries, defying conventional assumptions about evaluation difficulty.
-
-**Agreement Rates:**
-
--   Simple: 23.0%
--   **Moderate: 26.2%** ← Highest!
--   Complex: 16.5%
-
-**Possible Explanations:**
-
-1.  **Evaluation Guidelines Sweet Spot:** Guidelines may be optimized for moderate complexity, providing clear frameworks without overwhelming detail
-
-2.  **Rater Engagement:** Simple queries may receive rushed evaluation while complex queries cause decision paralysis; moderate complexity maintains optimal rater attention
-
-3.  **Criteria Clarity:** Very simple evaluations lack structure for systematic assessment, leading to subjective interpretations
-
-**Business Implication:** Current training and guidelines are most effective for moderate complexity. Investment needed in frameworks for both simple (clear criteria setting) and complex (structured decomposition) evaluations.
+The 3.2 percentage point difference between simple and moderate is not statistically significant (p = 0.24) and likely reflects sampling variation, as neither received differential treatment in data generation. The clear pattern is **complex queries show significantly lower agreement** (p \< 0.001), consistent with increased evaluation difficulty reducing inter-rater consistency.
 
 ### Individual Rater Performance
 
@@ -102,37 +100,41 @@ Moderate complexity queries achieved higher agreement than simple queries, defyi
 
 **Top 5 Most Accurate Raters:**
 
-| Rater    | Accuracy | Tendency | Expertise | Consistency\* |
-|----------|----------|----------|-----------|---------------|
-| Rater 14 | 67.4%    | Moderate | General   | 0.935         |
-| Rater 15 | 64.0%    | Moderate | General   | 0.893         |
-| Rater 5  | 62.1%    | Moderate | Technical | 0.827         |
-| Rater 12 | 60.4%    | Moderate | Technical | 0.802         |
-| Rater 3  | 60.0%    | Moderate | General   | 0.730         |
-
-*Consistency score: Simulation parameter (0.6-0.95) representing rater's reliability in applying evaluation criteria. Higher values indicate more consistent application of standards with less random variation.*
+| Rater    | Accuracy | Tendency | Expertise |
+|----------|----------|----------|-----------|
+| Rater 14 | 67.4%    | Moderate | General   |
+| Rater 15 | 64.0%    | Moderate | General   |
+| Rater 5  | 62.1%    | Moderate | Technical |
+| Rater 12 | 60.4%    | Moderate | Technical |
+| Rater 3  | 60.0%    | Moderate | General   |
 
 **Bottom 5 Least Accurate Raters:**
 
-| Rater    | Accuracy | Tendency | Expertise | Consistency |
-|----------|----------|----------|-----------|-------------|
-| Rater 6  | 45.1%    | Strict   | Opinion   | 0.854       |
-| Rater 7  | 46.4%    | Strict   | Technical | 0.608       |
-| Rater 10 | 49.4%    | Lenient  | Creative  | 0.935       |
-| Rater 9  | 51.5%    | Moderate | Factual   | 0.656       |
-| Rater 13 | 53.6%    | Lenient  | Opinion   | 0.647       |
+| Rater    | Accuracy | Tendency | Expertise |
+|----------|----------|----------|-----------|
+| Rater 6  | 45.1%    | Strict   | Opinion   |
+| Rater 7  | 46.4%    | Strict   | Technical |
+| Rater 10 | 49.4%    | Lenient  | Creative  |
+| Rater 9  | 51.5%    | Moderate | Factual   |
+| Rater 13 | 53.6%    | Lenient  | Opinion   |
 
-**Critical Pattern Discovered:**
+### Detecting Systematic Rating Bias
 
-All top 5 performers have **moderate rating tendency**, while 4 of bottom 5 have extreme tendencies (strict or lenient). This suggests that training raters to avoid extreme tendencies could improve accuracy by up to 22 percentage points.
+**Analysis Approach:**
 
-**Accuracy by Rating Tendency:**
+To identify raters with systematic over-rating or under-rating tendencies, I calculated mean bias (average deviation from ground truth) for each rater:
 
-| Tendency     | Raters | Mean Accuracy | Std Dev |
-|--------------|--------|---------------|---------|
-| **Moderate** | 11     | **58.9%**     | 4.54%   |
-| Lenient      | 2      | 51.5%         | 2.96%   |
-| Strict       | 2      | 45.8%         | 0.92%   |
+| Bias Pattern          | Raters | Mean Accuracy | Mean Bias |
+|-----------------------|--------|---------------|-----------|
+| **Calibrated (±0.1)** | 11     | **58.9%**     | +0.02     |
+| Over-rating           | 2      | 51.5%         | +0.47     |
+| Under-rating          | 2      | 45.8%         | -0.47     |
+
+**Detected Pattern:** Raters with systematic bias (\|bias\| \> 0.4) showed 7-13 percentage point lower accuracy than calibrated raters.
+
+**Business Application:** This methodology enables: 1. **Automated bias detection:** Flag raters with \|mean bias\| \> 0.3 for calibration review 2. **Computational correction:** For trusted-but-biased raters, adjust scores algorithmically 3. **Targeted training:** Calibration exercises for raters showing drift over time
+
+**Implementation Example:** Rater 6 consistently under-rates by 0.47 points. Adding +0.47 to their scores would improve accuracy from 45.1% to \~58%, matching calibrated raters—demonstrating the potential value of bias correction systems.
 
 **Expertise Domain Matching Impact:**
 
@@ -144,9 +146,7 @@ Analysis of 3,000 individual ratings shows expertise alignment matters:
 
 Example: Technical domain experts rating technical queries vs. opinion queries
 
-**Consistency-Accuracy Correlation:** Moderate positive correlation (r = 0.33) between rater consistency and accuracy, suggesting that reliable raters also tend to be more accurate.
-
-### Individual Rater Consistency Patterns
+### Inter-Rater Agreement Patterns
 
 **Most Consistent Raters (Highest Agreement with Peers):**
 
@@ -164,7 +164,7 @@ Example: Technical domain experts rating technical queries vs. opinion queries
 | Rater 7  | 38.5%             | Strict tendency, Technical domain expert |
 | Rater 9  | 39.3%             | Moderate tendency, Factual domain expert |
 
-**Key Insight:** 19.7 percentage point spread between most and least consistent raters (54.1% vs 34.4%). All top 3 most consistent raters share moderate rating tendency, while the bottom 3 include both strict and lenient extremes, reinforcing the importance of moderate tendency for reliable evaluation.
+**Observed Pattern:** 19.7 percentage point spread between most and least consistent raters (54.1% vs 34.4%), demonstrating substantial variation in how closely individual raters align with peer consensus. Raters with systematic bias (identified in the previous section) tend to show lower agreement with peers, as their shifted ratings naturally diverge from calibrated raters.
 
 ### Accuracy Varies by Evaluation Characteristics
 
@@ -181,17 +181,11 @@ Example: Technical domain experts rating technical queries vs. opinion queries
 
 ------------------------------------------------------------------------
 
-#### Complexity Effects on Accuracy
-
-| Complexity   | Exact Accuracy | Within ±1 | Mean Absolute Error |
-|--------------|----------------|-----------|---------------------|
-| **Moderate** | **60.8%**      | 96.4%     | 0.433               |
-| Simple       | 56.2%          | 96.0%     | 0.479               |
-| Complex      | 46.4%          | 86.4%     | 0.684               |
-
-**Critical Insight:**
-
-Moderate complexity shows BOTH highest agreement (26.2%) AND highest accuracy (60.8%), confirming it as the "sweet spot" for evaluation quality. Complex queries show 14.4 percentage point accuracy penalty and 10-point drop in within-tolerance performance.
+| Complexity | Exact Accuracy | Within ±1 | Mean Absolute Error |
+|------------|----------------|-----------|---------------------|
+| Moderate   | 60.8%          | 96.4%     | 0.433               |
+| Simple     | 56.2%          | 96.0%     | 0.479               |
+| Complex    | 46.4%          | 86.4%     | 0.684               |
 
 ------------------------------------------------------------------------
 
@@ -306,19 +300,11 @@ Based on comprehensive statistical analysis of 3,000 individual ratings across 1
 
 -   Solution: Structured decomposition frameworks breaking opinion queries into objective sub-criteria
 
-**Priority 2: Simple Query Criteria Clarity**
-
--   Paradox: Lower agreement than moderate despite simpler content
-
--   Solution: Explicit rubrics to prevent subjective philosophical disagreements
-
-**Priority 3: Extreme Quality Calibration**
+**Priority 2: Calibration for Extreme Quality Levels**
 
 -   Quality 1: 28.5% overrated, only 71.5% rated correctly
-
 -   Quality 5: 24.2% underrated, only 75.8% rated correctly
-
--   Solution: Anchor examples and discussion of boundary cases
+-   Solution: Anchor examples and discussion of boundary cases to improve accuracy at quality extremes
 
 #### 4. Quality Assurance & Monitoring
 
@@ -339,8 +325,6 @@ Based on comprehensive statistical analysis of 3,000 individual ratings across 1
 -   Alert on consistency drops (may indicate rater fatigue)
 
 **Expected Impact:**
-
--   Training on moderate tendency: +5-10 percentage points accuracy
 
 -   Expertise matching optimization: +3.5 percentage points
 
@@ -385,9 +369,9 @@ portfolio-llm-eval-quality/
 
 ### Using Pre-Generated Data (Recommended)
 
-The repository includes frozen production data in `data/production/` that matches 
-all findings in this README:
-```r
+The repository includes frozen production data in `data/production/` that matches all findings in this README:
+
+``` r
 # 1. Restore package dependencies (first time only)
 renv::restore()
 
@@ -428,12 +412,9 @@ source("analysis/visualization_script.r")
 
 ## Data Generation & Reproducibility
 
-The synthetic data is generated using `data/synthetic_data_generator.r` with a fixed random seed (42), ensuring perfect reproducibility. The `/data/production` folder contains the frozen dataset used for all analyses in this project. 
+The synthetic data is generated using `data/synthetic_data_generator.r` with a fixed random seed (42), ensuring perfect reproducibility. The `/data/production` folder contains the frozen dataset used for all analyses in this project.
 
-To verify reproducibility:
-1. Run `source("data/synthetic_data_generator.r")`
-2. Compare output to `/data/production/*.csv` files
-3. They should be identical
+To verify reproducibility: 1. Run `source("data/synthetic_data_generator.r")` 2. Compare output to `/data/production/*.csv` files 3. They should be identical
 
 This separation allows analysis scripts to reference stable inputs while maintaining the ability to regenerate data for verification.
 

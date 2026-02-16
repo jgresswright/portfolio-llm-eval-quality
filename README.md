@@ -444,7 +444,7 @@ This portfolio project was developed to demonstrate data science capabilities in
 
 -   LinkedIn: <https://www.linkedin.com/in/jonathan-gress-wright/>
 -   GitHub: <https://github.com/jgresswright/>
--   Email: [gressmeister\@gmail.com](mailto:gressmeister@gmail.com){.email}
+-   Email: gressmeister@gmail.com
 
 ------------------------------------------------------------------------
 

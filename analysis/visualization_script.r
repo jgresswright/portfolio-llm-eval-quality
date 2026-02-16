@@ -95,7 +95,7 @@ p2 <- agreement_data %>%
   scale_y_continuous(limits = c(0, 70), labels = percent_format(scale = 1)) +
   scale_fill_manual(values = c("#06A77D", "#F1A208", "#D11149")) +
   labs(
-    title = "Moderate Complexity Queries Show Highest Agreement",
+    title = "Complex Queries Show Lower Agreement",
     subtitle = "Full agreement (3/3 raters) by query complexity level",
     x = "Query Complexity",
     y = "Full Agreement Rate (%)",

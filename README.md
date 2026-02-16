@@ -240,11 +240,11 @@ Systematic regression to the mean: - Quality 1 responses overrated by 0.35 point
 
 ## Key Visualizations
 
-### Moderate Complexity Advantage
+### Complexity Impact on Agreement
 
 ![Agreement by Complexity](output/figures/02_agreement_by_complexity.png)
 
-*Moderate complexity queries show highest agreement rates (26.2%), defying conventional assumptions that simpler = easier to evaluate consistently.*
+*Complex queries show significantly lower agreement (16.5% vs 23-26% for simple/moderate), demonstrating how evaluation difficulty reduces inter-rater consistency.*
 
 ------------------------------------------------------------------------
 

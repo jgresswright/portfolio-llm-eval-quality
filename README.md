@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-This project analyzes inter-rater reliability and accuracy patterns in large-scale LLM evaluation systems using synthetically generated data that mirrors real-world annotation workflows. Through statistical analysis of 1,000 evaluations across 15 raters, the analysis quantified fair overall agreement (Fleiss' Kappa = 0.281) with notable variation by evaluation type. **Complex queries showed significantly lower agreement (16.5%) compared to simple and moderate queries (23-26%)**, demonstrating how evaluation difficulty directly impacts inter-rater consistency and highlighting areas requiring enhanced guidelines and quality frameworks.
+This project analyzes inter-rater reliability and accuracy patterns in large-scale LLM evaluation systems using synthetically generated data that mirrors real-world annotation workflows. Through statistical analysis of 1,000 evaluations across 15 raters, the analysis quantified fair overall agreement (Fleiss' Kappa = 0.281) with notable variation by evaluation type. **Complex queries showed significantly lower agreement (16.5%) compared to simple and moderate queries (23-26%)**, illustrating how evaluation difficulty would impact inter-rater consistency and highlighting areas that would require enhanced guidelines and quality frameworks.
 
 **Key Technical Achievement:** Complete reproducible analytical pipeline from synthetic data generation through statistical analysis (Fleiss' Kappa, pairwise agreement, disagreement magnitude) and publication-quality reporting, showcasing practical application of inter-rater reliability methods to real-world evaluation quality challenges.
 

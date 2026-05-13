@@ -85,10 +85,10 @@ The analysis of 1,000 evaluations across 15 raters revealed **fair overall agree
 **Complexity Effects:**
 
 -   Simple queries: 23.0% agreement
--   Moderate queries: 26.2% agreement\
+-   Moderate queries: 26.2% agreement
 -   Complex queries: 16.5% agreement
 
-The 3.2 percentage point difference between simple and moderate is not statistically significant (p = 0.24) and likely reflects sampling variation, as neither received differential treatment in data generation. The clear pattern is **complex queries show significantly lower agreement** (p \< 0.001), consistent with increased evaluation difficulty reducing inter-rater consistency.
+The 3.2 percentage point difference between simple and moderate is not significant and likely reflects sampling variation, as neither received differential treatment in data generation. The clear pattern is **complex queries show significantly lower agreement**, consistent with increased evaluation difficulty reducing inter-rater consistency.
 
 ### Individual Rater Performance
 
